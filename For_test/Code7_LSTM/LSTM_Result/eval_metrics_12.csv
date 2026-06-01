@@ -1,0 +1,2 @@
+epoch,jaccard,levenshtein,end_reach,n_samples,ckpt
+50,0.25700221634454795,43.46407766990291,0.34368932038834954,515,model_epoch_50.pth

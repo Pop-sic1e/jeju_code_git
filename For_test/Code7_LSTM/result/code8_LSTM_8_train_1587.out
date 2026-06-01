@@ -1,0 +1,40 @@
+CUDA available: True
+GPU: NVIDIA T400 4GB
+[Graph] num_nodes=1,458 | num_edges=4,862
+[Data] Train samples=5,865 | feat_dim=170
+=== Load Weights (GPU only, save ckpt) ===
+=== Training Start (GPU only, save ckpt) ===
+Epoch [10/30000] | TrainLoss: 7.2779
+Epoch [20/30000] | TrainLoss: 7.2632
+Epoch [30/30000] | TrainLoss: 7.2418
+Epoch [40/30000] | TrainLoss: 7.2072
+Epoch [50/30000] | TrainLoss: 7.1524
+Epoch [60/30000] | TrainLoss: 7.0722
+Epoch [70/30000] | TrainLoss: 6.9754
+Epoch [80/30000] | TrainLoss: 6.8794
+Epoch [90/30000] | TrainLoss: 6.8037
+Epoch [100/30000] | TrainLoss: 6.7446
+Epoch [110/30000] | TrainLoss: 6.7019
+Epoch [120/30000] | TrainLoss: 6.6726
+Epoch [130/30000] | TrainLoss: 6.6537
+Epoch [140/30000] | TrainLoss: 6.6360
+Epoch [150/30000] | TrainLoss: 6.6226
+Epoch [160/30000] | TrainLoss: 6.6147
+Epoch [170/30000] | TrainLoss: 6.6059
+Epoch [180/30000] | TrainLoss: 6.5958
+Epoch [190/30000] | TrainLoss: 6.5897
+Epoch [200/30000] | TrainLoss: 6.5811
+Epoch [210/30000] | TrainLoss: 6.5703
+Epoch [220/30000] | TrainLoss: 6.5596
+Epoch [230/30000] | TrainLoss: 6.5442
+Epoch [240/30000] | TrainLoss: 6.5232
+Epoch [250/30000] | TrainLoss: 6.4969
+Epoch [260/30000] | TrainLoss: 6.4677
+Epoch [270/30000] | TrainLoss: 6.4319
+Epoch [280/30000] | TrainLoss: 6.3976
+Epoch [290/30000] | TrainLoss: 6.3621
+Epoch [300/30000] | TrainLoss: 6.3290
+Epoch [310/30000] | TrainLoss: 6.2969
+Epoch [320/30000] | TrainLoss: 6.2682
+Epoch [330/30000] | TrainLoss: 6.2419
+Epoch [340/30000] | TrainLoss: 6.2176

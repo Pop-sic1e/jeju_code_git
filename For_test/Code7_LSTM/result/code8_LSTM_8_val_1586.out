@@ -1,0 +1,16 @@
+[Graph] num_nodes=1,458 | num_edges=4,862
+[Eval] validation loaded: n=812 | feat_dim=170
+[Eval] workers=8 | threads_per_worker=2 | poll=5s
+[Eval] resume_from_epoch=0 | already_done=0
+[Eval] watching: ../weight_for_test/weight_8/ | eval_every=50
+[Eval] submitted epoch=50 (model_epoch_50.pth) | inflight=1
+[Eval] submitted epoch=100 (model_epoch_100.pth) | inflight=2
+[Eval] epoch=50 | Jaccard=0.3241 | Lev=34.97 | EndReach=0.430 | n=812
+[Eval] submitted epoch=150 (model_epoch_150.pth) | inflight=2
+[Eval] epoch=100 | Jaccard=0.3390 | Lev=41.37 | EndReach=0.303 | n=812
+[Eval] submitted epoch=200 (model_epoch_200.pth) | inflight=2
+[Eval] epoch=150 | Jaccard=0.3559 | Lev=37.66 | EndReach=0.369 | n=812
+[Eval] submitted epoch=250 (model_epoch_250.pth) | inflight=2
+[Eval] epoch=200 | Jaccard=0.3612 | Lev=36.95 | EndReach=0.382 | n=812
+[Eval] submitted epoch=300 (model_epoch_300.pth) | inflight=2
+[Eval] epoch=250 | Jaccard=0.3582 | Lev=37.17 | EndReach=0.378 | n=812

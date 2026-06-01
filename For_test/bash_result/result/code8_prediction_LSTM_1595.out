@@ -1,0 +1,37 @@
+============================================================
+Run started at 2026-05-27 21:43:01
+CPU plan: workers=8 * threads_per_worker=3 = 24
+============================================================
+[2026-05-27 21:43:13] k=8
+  weight        : ./weight/model_epoch_8.pth
+  saved file    : ./prediction_LSTM/LSTM_8_by1.csv
+  samples       : 812
+  workers       : 8
+  threads/worker: 3
+  beam_size     : 5
+  decode time   : 0:00:11.070048
+  total time    : 0:00:11.501561
+------------------------------------------------------------
+[2026-05-27 21:43:22] k=12
+  weight        : ./weight/model_epoch_12.pth
+  saved file    : ./prediction_LSTM/LSTM_12_by1.csv
+  samples       : 515
+  workers       : 8
+  threads/worker: 3
+  beam_size     : 5
+  decode time   : 0:00:08.385995
+  total time    : 0:00:08.693219
+------------------------------------------------------------
+[2026-05-27 21:43:29] k=16
+  weight        : ./weight/model_epoch_16.pth
+  saved file    : ./prediction_LSTM/LSTM_16_by1.csv
+  samples       : 374
+  workers       : 8
+  threads/worker: 3
+  beam_size     : 5
+  decode time   : 0:00:07.381359
+  total time    : 0:00:07.622581
+------------------------------------------------------------
+ALL SETS TOTAL ELAPSED: 0:00:27.819794
+Run finished at 2026-05-27 21:43:29
+============================================================
