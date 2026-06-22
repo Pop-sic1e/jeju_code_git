@@ -61,7 +61,7 @@ GRAPH_PATH  = "./new_hexagraph/hexa_network_with_road.gpickle"
 VAL_ROOT    = "./Jeju_data/Validation/shortcut_route"
 
 # weight for k=8/12/16 should be placed at ./weight/model_epoch_{k}.pth
-WEIGHT_TMPL = "./weight/model_epoch_{k}.pth"
+WEIGHT_TMPL = "./weight/model_{k}.pth"
 
 OUT_DIR     = "./prediction_LSTM"
 os.makedirs(OUT_DIR, exist_ok=True)
