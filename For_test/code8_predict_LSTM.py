@@ -9,19 +9,19 @@ Purpose:
 
 Input:
     - Hexagon road network graph:
-      ./new_hexagraph/hexa_network_with_road.gpickle
+      ./data/new_hexagraph/hexa_network_with_road.gpickle
     - Validation route segment files:
-      ./Jeju_data/Validation/shortcut_route/route_split_{k}/
+      ./data/sample_processed_inputs/Validation/shortcut_route/route_split_{k}/
     - Validation traveler attribute files with OD nodes:
-      ./Jeju_data/Validation/shortcut_route/traveler_proper_OD_{k}.csv
+      ./data/sample_processed_inputs/Validation/shortcut_route/traveler_proper_OD_{k}.csv
     - Trained model checkpoints:
-      ./weight/model_epoch_{k}.pth
+      ./LSTM_weight/model_{k}.pth
 
 Output:
     - LSTM-based traveler-level route predictions:
-      ./prediction_LSTM/LSTM_{k}_by1.csv
+      ./expected_outputs/code8_prediction_LSTM/LSTM_{k}_by1.csv
     - Runtime log:
-      ./prediction_LSTM/timing_log_adj_multi_k.txt
+      ./expected_outputs/code8_prediction_LSTM/timing_log_adj_multi_k.txt
 
 Main procedures:
     1. Load the hexagon road network graph and convert it into PyTorch Geometric edge_index format.
@@ -57,13 +57,13 @@ from datetime import timedelta, datetime
 
 
 # 0. Configuration
-GRAPH_PATH  = "./new_hexagraph/hexa_network_with_road.gpickle"
-VAL_ROOT    = "./Jeju_data/Validation/shortcut_route"
+GRAPH_PATH  = "./data/new_hexagraph/hexa_network_with_road.gpickle"
+VAL_ROOT    = "./data/sample_processed_inputs/Validation/shortcut_route"
 
-# weight for k=8/12/16 should be placed at ./weight/model_epoch_{k}.pth
-WEIGHT_TMPL = "./weight/model_{k}.pth"
+# weight for k=8/12/16 should be placed at ./LSTM_weight/model_{k}.pth
+WEIGHT_TMPL = "./LSTM_weight/model_{k}.pth"
 
-OUT_DIR     = "./prediction_LSTM"
+OUT_DIR     = "./expected_outputs/code8_prediction_LSTM"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 LOG_PATH = os.path.join(OUT_DIR, "timing_log_adj_multi_k.txt")

@@ -8,15 +8,15 @@ Purpose:
 
 Input:
     - Hexagon road network graph:
-      ../new_hexagraph/hexa_network_with_road.gpickle
+      ../data/new_hexagraph/hexa_network_with_road.gpickle
     - Training route segment files:
-      ../Jeju_data/Training/shortcut_route/route_split_8/
+      ../data/sample_processed_inputs/Training/shortcut_route/route_split_8/
     - Traveler attribute file with OD nodes:
-      ../Jeju_data/Training/shortcut_route/traveler_proper_OD_8.csv
+      ../data/sample_processed_inputs/Training/shortcut_route/traveler_proper_OD_8.csv
 
 Output:
     - Model checkpoints:
-      ../weight_for_test/weight_8/model_epoch_{epoch}.pth
+      ../expected_outputs/code7_weight_for_test/weight_8/model_epoch_{epoch}.pth
 
 Main procedures:
     1. Load the hexagon road network graph and convert it into PyTorch Geometric
@@ -57,10 +57,11 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 
 # Environment and hyperparameter settings
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print("CUDA available:", torch.cuda.is_available())
-if torch.cuda.is_available():
-    print("GPU:", torch.cuda.get_device_name(0))
+device = torch.device("cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# print("CUDA available:", torch.cuda.is_available())
+# if torch.cuda.is_available():
+#     print("GPU:", torch.cuda.get_device_name(0))
 
 cpu_n = int(os.environ.get("SLURM_CPUS_PER_TASK", "8"))
 torch.set_num_threads(cpu_n)
@@ -76,12 +77,12 @@ torch.manual_seed(seed)
 np.random.seed(seed)
 
 # File paths
-GRAPH_PATH = "../new_hexagraph/hexa_network_with_road.gpickle"
+GRAPH_PATH = "../data/new_hexagraph/hexa_network_with_road.gpickle"
 
-TRAIN_ROUTE_DIR = "../Jeju_data/Training/shortcut_route/route_split_8/"
-TRAIN_PROP_CSV  = "../Jeju_data/Training/shortcut_route/traveler_proper_OD_8.csv"
+TRAIN_ROUTE_DIR = "../data/sample_processed_inputs/Training/shortcut_route/route_split_8/"
+TRAIN_PROP_CSV  = "../data/sample_processed_inputs/Training/shortcut_route/traveler_proper_OD_8.csv"
 
-WEIGHT_DIR = "../weight_for_test/weight_8/"
+WEIGHT_DIR = "../expected_outputs/code7_weight_for_test/weight_8/"
 os.makedirs(WEIGHT_DIR, exist_ok=True)
 
 # Training hyperparameters

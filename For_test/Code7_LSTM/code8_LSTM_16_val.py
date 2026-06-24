@@ -8,13 +8,13 @@ Purpose:
 
 Input:
     - Model checkpoints saved by the training script:
-      ../weight_for_test/weight_16/model_epoch_{epoch}.pth
+      ../expected_outputs/code7_weight_for_test/weight_16/model_epoch_{epoch}.pth
     - Hexagon road network graph:
-      ../new_hexagraph/hexa_network_with_road.gpickle
+      ../data/new_hexagraph/hexa_network_with_road.gpickle
     - Validation route segment files:
-      ../Jeju_data/Validation/shortcut_route/route_split_16/
+      ../data/sample_processed_inputs/Validation/shortcut_route/route_split_16/
     - Validation traveler attribute file with OD nodes:
-      ../Jeju_data/Validation/shortcut_route/traveler_proper_OD_16.csv
+      ../data/sample_processed_inputs/Validation/shortcut_route/traveler_proper_OD_16.csv
 
 Output:
     - Validation metric log:
@@ -59,14 +59,14 @@ from torch_geometric.utils import from_networkx
 cpu_n = int(os.environ.get("SLURM_CPUS_PER_TASK", "16"))
 device = torch.device("cpu")
 
-WEIGHT_DIR = "../weight_for_test/weight_16/"
+WEIGHT_DIR = "../expected_outputs/code7_weight_for_test/weight_16/"
 CKPT_PATTERN = r"model_epoch_(\d+)\.pth"
 POLL_SEC = 5
 
-GRAPH_PATH = "../new_hexagraph/hexa_network_with_road.gpickle"
+GRAPH_PATH = "../data/new_hexagraph/hexa_network_with_road.gpickle"
 
-VAL_ROUTE_DIR = "../Jeju_data/Validation/shortcut_route/route_split_16/"
-VAL_PROP_CSV  = "../Jeju_data/Validation/shortcut_route/traveler_proper_OD_16.csv"
+VAL_ROUTE_DIR = "../data/sample_processed_inputs/Validation/shortcut_route/route_split_16/"
+VAL_PROP_CSV  = "../data/sample_processed_inputs/Validation/shortcut_route/traveler_proper_OD_16.csv"
 
 OUT_DIR = "./LSTM_Result"
 os.makedirs(OUT_DIR, exist_ok=True)
