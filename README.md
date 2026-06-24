@@ -2,11 +2,11 @@
 
 ## Origin-Destination Trajectory Prediction with Deep Learning and Markov Models
 
-For detailed information, including the data and the data usage for each code file, please refer to `Reproduction Guide.pdf` in the repository.
-
 This document provides step-by-step instructions for reproducing the data processing workflow, route prediction results, evaluation metrics, statistical tests, and figures reported in the manuscript.
 
-All file paths are relative paths.
+For instructions on downloading the original AI-Hub dataset and identifying the dataset and file keys used in this study, please refer to `Data Download Instructions.md`.
+
+All repository file paths used in the reproduction workflows are relative paths.
 
 ---
 
