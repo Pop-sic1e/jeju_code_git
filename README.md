@@ -43,12 +43,11 @@ The overall repository structure is as follows.
 ```text
 jeju_code_git_anonymous/
 ├── Data Download Instructions.md              # Instructions for downloading the original AI-Hub dataset and file keys
-├── README.md                                  # Overview of the repository and reproducibility package
-├── Reproduction Guide.pdf                     # Step-by-step guide for reproducing workflows, figures, tables, and metrics
+├── README.md                                  # Overview of the repository and guide for reproducing workflows, figures, tables, and metrics
 │
 ├── For_test/                                  # Executable workflow using simulated data
-│ ├── Code7_LSTM/                              # Supporting scripts and files for LSTM model training
-│ ├── LSTM_weight/                             # Pretrained LSTM weights used in the For_test workflow
+│ ├── Code7_LSTM/                              # Supporting scripts and files for LSTM model training and validation
+│ ├── LSTM_weight/                             # LSTM model weights trained in the actual study and used in the For_test prediction workflow
 │ ├── data/                                    # Input and intermediate data for the For_test workflow
 │ │ ├── jeju_shp/                              # Jeju boundary shapefile
 │ │ ├── new_hexagraph/                         # Hexagon grid and hexagon-based road network files
@@ -59,7 +58,7 @@ jeju_code_git_anonymous/
 │ │ ├── code5_shortcut_prediction_route/       # Expected shortest-path prediction outputs
 │ │ ├── code6_prediction_markov/               # Expected Basic Markov prediction outputs
 │ │ ├── code6.5_prediction_markov_2/           # Expected Conditional Markov prediction outputs
-│ │ ├── code7_weight_for_test/                 # Expected example LSTM training outputs
+│ │ ├── code7_weight_for_test/                 # Expected example LSTM training weights
 │ │ ├── code8_bash_result/                     # Expected SLURM/bash execution logs for LSTM prediction
 │ │ ├── code8_prediction_LSTM/                 # Expected raw LSTM prediction outputs
 │ │ ├── code9_refine_LSTM/                     # Expected topology-refined LSTM prediction outputs
@@ -157,21 +156,21 @@ The following data IDs are used to indicate when the same dataset is reused by m
 
 The full workflow consists of the following stages:
 
-1. Construct and show the hexagon road network. (`For_test/code1`)
-2. Filter raw GPS points located within Jeju. (`For_test/code2`)
-3. Convert GPS trajectories to hexagon cell sequences. (`For_test/code2`)
-4. Create traveler-level property tables. (`For_test/code3`)
-5. Generate connected shortcut routes and split them into OD segments. (`For_test/code4`)
+1. Construct and show the hexagon road network. (`For_test/code1_hexa_network.ipynb`)
+2. Filter raw GPS points located within Jeju. (`For_test/code2_change_gps_to_hexa.ipynb`)
+3. Convert GPS trajectories to hexagon cell sequences. (`For_test/code3_create_traveler_feature.ipynb`)
+4. Create traveler-level property tables. (`For_test/code3_create_traveler_feature.ipynb`)
+5. Generate connected shortcut routes and split them into OD segments. (`For_test/code4_create_od_route_segments.ipynb`)
 6. Predict routes using four models:
 
-   * Shortest Path (`For_test/code5`)
-   * Basic Markov (`For_test/code6`)
-   * Conditional Markov (`For_test/code6.5`)
-   * LSTM (`For_test/code7`, `code8`)
-7. Refine LSTM predictions using graph topology. (`For_test/code9`)
-8. Compute Jaccard Similarity and Levenshtein Distance. (`For_test/code10`, `Figure_and_Real/Evaluation_and_significance.ipynb`)
-9. Conduct statistical significance tests. (`Figure_and_Real/Evaluation_and_significance.ipynb`)
-10. Generate manuscript figures. (`Figure_and_Real/drawing_picture.ipynb`)
+   * Shortest Path (`For_test/code5_predict_shortest.ipynb`)
+   * Basic Markov (`For_test/code6_predict_markov.ipynb`)
+   * Conditional Markov (`For_test/code6.5_predict_attribute_markov.ipynb`)
+   * LSTM (`For_test/code7_train_LSTM_example.ipynb`, `For_test/code8_predict_LSTM.py`)
+7. Refine LSTM predictions using graph topology. (`For_test/code9_refine_LSTM.ipynb`)
+8. Compute Jaccard Similarity and Levenshtein Distance. (`For_test/code10_accuracy.ipynb`, `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`)
+9. Conduct statistical significance tests. (`Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`)
+10. Generate manuscript figures. (`Figure_and_Real/drawing_fig_1_6_9_10_11.ipynb`)
 
 ---
 
@@ -190,8 +189,8 @@ Run the files in the following order:
 9. `For_test/code8_predict_LSTM.py`
 10. `For_test/code9_refine_LSTM.ipynb`
 11. `For_test/code10_accuracy.ipynb`
-12. `Figure_and_Real/Evaluation_and_significance.ipynb`
-13. `Figure_and_Real/drawing_picture.ipynb`
+12. `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`
+13. `Figure_and_Real/drawing_fig_1_6_9_10_11.ipynb`
 
 ---
 
@@ -325,9 +324,11 @@ Example trained LSTM model weights. The model weights generated by `code7_train_
 
 **Description**
 
-This notebook demonstrates the training procedure of the LSTM-based route prediction model using the reduced dataset provided in the repository. The model learns route patterns from OD segments, traveler information, and graph-based spatial context. The notebook is included to illustrate the complete model training workflow.
+This notebook demonstrates the training procedure of the LSTM-based route prediction model using the simulated data provided in the repository. The model learns route patterns from OD segments, traveler information, and graph-based spatial context. The notebook is included to illustrate the complete model training workflow.
 
-In the shared repository, this notebook is provided as an example implementation in `.ipynb` format and demonstrates the training procedure only for the k=8 setting. In the actual study, the models for k=8, 12, and 16 were trained separately using `.py` and `.sh` scripts in a SLURM-based computing environment. Therefore, this notebook is intended to explain the training workflow step by step, while the trained model weights used in the study are provided separately.
+In the shared repository, this notebook is provided as an example implementation in `.ipynb` format and demonstrates the training procedure only for the `k=8` setting. The corresponding executable training scripts are also provided in `For_test/Code7_LSTM/` as `.py` and `.sh` files. In this folder, the `err/` and `result/` directories contain the execution logs and training outputs, and the `LSTM_Result/` directory summarizes the validation results in tabular form.
+
+In the actual study, the models for `k=8`, `k=12`, and `k=16` were trained separately using `.py` and `.sh` scripts in a SLURM-based computing environment. Therefore, this notebook is intended to explain the training workflow step by step, while the trained model weights used for prediction are provided separately.
 
 ---
 
@@ -335,7 +336,9 @@ In the shared repository, this notebook is provided as an example implementation
 
 **Input data**
 
-The hexagon road network, validation OD route segments, traveler-level OD feature tables, and trained LSTM model weights. The prediction scripts use the trained model weights from the actual study stored in `./weight/`, rather than the example weights stored in `./weight_for_test/`.
+The hexagon road network, validation OD route segments, traveler-level OD feature tables, and trained LSTM model weights are used as input data. The prediction scripts use the trained model weights from the actual study stored in `./LSTM_weight/`, rather than the example weights stored in `./expected_findings/code7_weight_for_test/`.
+
+The example weights in `./expected_findings/code7_weight_for_test/` are generated only to demonstrate the LSTM training procedure. Because these weights are trained for only a limited number of epochs, using them for prediction would produce unstable and unrealistic route prediction results. Since the outputs from `code8_predict_LSTM.py` are later used in `code10_accuracy.ipynb` to compute evaluation metrics and prepare route comparison results, the trained model weights in `./LSTM_weight/` are used to ensure that the LSTM prediction outputs are meaningful and suitable for subsequent evaluation.
 
 **Output data**
 
@@ -397,23 +400,24 @@ This notebook evaluates route prediction performance by comparing predicted rout
 
 ---
 
-### 7.13 `Figure_and_Real/Evaluation_and_significance.ipynb`
+### 7.13 `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`
 
 **Input data**
 
-Route prediction results and accuracy files generated from the full original dataset used in the actual study, rather than the reduced dataset provided in the `For_test` folder.
+Route prediction results and accuracy files generated from the full original dataset used in the actual study, rather than the simulated dataset provided in the `For_test` folder.
 
 **Output data**
 
 Performance figures and statistical significance test results.
+Detailed item-specific reproduction instructions for Figure 7 and Figure 8 are provided in Sections 8.4 and 8.5.
 
 **Description**
 
-This notebook reproduces the quantitative evaluation results reported in the manuscript. Unlike the `For_test` workflow, which uses a reduced dataset for demonstration purposes, this notebook uses the final route prediction results generated from the full original dataset used in the actual study. It generates performance comparison figures and performs Friedman tests, pairwise Wilcoxon signed-rank tests, and Holm correction procedures to assess whether differences among prediction models are statistically significant.
+This notebook reproduces the quantitative evaluation results reported in the manuscript. Unlike the `For_test` workflow, which uses a simulated dataset for demonstration purposes, this notebook uses the final route prediction results generated from the full original dataset used in the actual study. It generates performance comparison figures and performs Friedman tests, pairwise Wilcoxon signed-rank tests, and Holm correction procedures to assess whether differences among prediction models are statistically significant.
 
 ---
 
-### 7.14 `Figure_and_Real/drawing_picture.ipynb`
+### 7.14 `Figure_and_Real/drawing_fig_1_6_9_10_11.ipynb`
 
 **Input data**
 
@@ -422,18 +426,20 @@ The hexagon road network and figure-specific trajectory datasets generated from 
 **Output data**
 
 Figures reported in the manuscript.
+Detailed item-specific reproduction instructions for Figures 1, 6, 9, 10, and 11 are provided in Sections 8.2, 8.3, 8.6, 8.7, and 8.8.
 
 **Description**
 
-This notebook reproduces the route visualization figures presented in the manuscript. Although each figure uses a separate dataset prepared specifically for visualization, all of these datasets were generated from the full original dataset used in the actual study. The generation procedures are identical to those demonstrated in the `For_test` workflow, but were applied to the complete dataset rather than the reduced sample dataset.
+This notebook reproduces the route visualization figures presented in the manuscript. Although each figure uses a separate dataset prepared specifically for visualization, all of these datasets were generated from the full original dataset used in the actual study. The generation procedures are identical to those demonstrated in the `For_test` workflow, but were applied to the complete dataset rather than the simulated dataset.
 
-* For Figure 1, the visualization is based on the ground-truth route dataset (`merged_routes_by_12.csv`) generated during the accuracy evaluation procedure in `For_test/code10_accuracy.ipynb`.
-* For Figure 6, the visualization uses route predictions generated by the Shortest Path, Basic Markov, Conditional Markov, and LSTM models (`For_test/code5~code9`), together with the ground-truth route dataset generated in `For_test/code10_accuracy.ipynb`. A representative traveler was selected and visualized for comparison.
-* For Figure 9, the visualization is based on OD route segments generated in `For_test/code4_create_od_route_segments.ipynb`.
-* For Figures 10 and 11, the visualizations use route predictions generated by the four prediction models (`For_test/code5~code9`) together with route segments generated in `For_test/code4_create_od_route_segments.ipynb`. Representative examples were selected and visualized for comparison.
+* For Figure 1, the visualization is based on the ground-truth route dataset (`merged_routes_by_12.csv`) generated by applying the same accuracy-evaluation and route-merging workflow demonstrated in `For_test/code10_accuracy.ipynb` to the full original dataset.
+* For Figure 6, the visualization uses route predictions generated by applying the same prediction workflow demonstrated in `For_test/code5~code9` to the full original dataset, together with the ground-truth route dataset generated by applying the same workflow demonstrated in `For_test/code10_accuracy.ipynb` to the full original dataset. A representative traveler was selected and visualized for comparison.
+* For Figure 9, the visualization is based on OD route segments generated by applying the same OD segmentation workflow demonstrated in `For_test/code4_create_od_route_segments.ipynb` to the full original dataset.
+* For Figure 10 and Figure 11, the visualizations use route predictions generated by applying the same four-model prediction workflow demonstrated in `For_test/code5~code9` to the full original dataset, together with route segments generated by applying the same OD segmentation workflow demonstrated in `For_test/code4_create_od_route_segments.ipynb` to the full original dataset. Representative examples were selected and visualized for comparison.
 
 Therefore, while the datasets stored in the `Figure_and_Real` folder are provided specifically for reproducing the manuscript figures, all of them originate from the same workflow described in the `For_test` folder and were generated using the full original dataset employed in the study.
 
+---
 
 ## 8. Description of Each Reported Finding in the Manuscript
 
@@ -475,7 +481,7 @@ Optional lodge and activity history files are loaded for inspection but are not 
 
 1. Run `For_test/code3_create_traveler_feature.ipynb`.
 
-This notebook selects and preprocesses the traveler, companion, travel, movement, and trajectory-related variables used in the model input feature table.
+This notebook selects and preprocesses the traveler, companion, travel, movement, and trajectory-related variables used in the model input feature table. Categorical variables, including marital status, occupation, travel style, start month, end month, travel purpose, and transportation mode, are converted into one-hot encoded variables. Gender is encoded as a binary variable, and numerical variables such as age, family size, travel frequency, trip duration, personal income, household income, and companion number are retained or converted into integer-coded variables according to the data type definitions summarized in Table 1.
 
 #### Output data
 
@@ -488,37 +494,57 @@ Table 1 is a data description table. It summarizes the input variables used in t
 
 ---
 
-### 8.2 Figure 1. Hexagon-based Trajectory Representation
+### 8.2 Figure 1. Jeju Island and Tourist Trajectory
 
 #### Input data
 
 Figure 1 uses the following spatial and trajectory data:
 
-- Base hexagon grid:
-- `./Figure_and_Real/data/new_hexagraph/jeju_hexa_for_use.shp`
+* Base hexagon grid:
 
-- Hexagon road network:
-- `./Figure_and_Real/data/new_hexagraph/hexa_network_with_road.shp`
+  * `./Figure_and_Real/data/new_hexagraph/jeju_hexa_for_use.shp`
 
-- Merged trajectory data:
-- `./Figure_and_Real/data/GPS_trajectory_for_figure/Figure_1/merged_routes_by_{k}.csv`
+* Hexagon road network:
+
+  * `./Figure_and_Real/data/new_hexagraph/hexa_network_with_road.shp`
+
+* Merged trajectory data:
+
+  * `./Figure_and_Real/data/GPS_trajectory_for_figure/Figure_1/merged_routes_by_{k}.csv`
 
 #### Code step
 
-1. Run `Figure_and_Real/drawing_fig_1_6_9_10_11.ipynb`.
-2. Execute the section corresponding to Figure 1.
+1. Run the corresponding workflow in `For_test` to understand and execute the data processing procedure using simulated data:
 
-The file `merged_routes_by_{k}.csv` was generated by applying the same route-merging and accuracy-preparation workflow demonstrated in `For_test/code10_accuracy.ipynb` to the full original dataset. Because the original AI-Hub data cannot be redistributed, the full raw dataset is not included in this repository. Instead, the final derived trajectory file required to reproduce Figure 1 is provided in `Figure_and_Real`.
+   * `For_test/code2_change_gps_to_hexa.ipynb`
+   * `For_test/code3_create_traveler_feature.ipynb`
+   * `For_test/code4_create_od_route_segments.ipynb`
+   * `For_test/code10_accuracy.ipynb`
+
+2. The `For_test` workflow demonstrates how raw-style trajectory data are filtered, converted into hexagon sequences, connected through the hexagon road network, and merged into route-level trajectory files.
+
+3. The same route-processing and route-merging workflow demonstrated in `For_test` was applied to the full original dataset used in the actual study. The resulting derived trajectory file, `merged_routes_by_{k}.csv`, is provided in:
+
+   * `./Figure_and_Real/data/GPS_trajectory_for_figure/Figure_1/`
+
+4. Run `Figure_and_Real/drawing_fig_1_6_9_10_11.ipynb`.
+
+5. Execute the section corresponding to Figure 1.
+
+Because the original AI-Hub data cannot be redistributed, the full raw dataset is not included in this repository. Instead, `For_test` provides an executable simulated-data workflow, and `Figure_and_Real` provides the derived trajectory file generated from the full original dataset to reproduce the manuscript figure.
 
 #### Output data
 
-- `./Figure_and_Real/Figure/Figure_1.png`
+* `./Figure_and_Real/Figure/Figure_1.png`
 
 #### Description
 
-Figure 1 visualizes the hexagon-based trajectory representation used in the study. It shows the hexagon spatial framework and a representative observed trajectory after conversion into hexagon-based route sequences. The purpose of the figure is to illustrate how raw movement trajectories are represented in the hexagon road network used for route prediction.
+Figure 1 visualizes Jeju Island, the hexagon-based spatial framework, and a representative tourist trajectory. The figure illustrates how tourist movement data are represented as route sequences on the hexagon road network. The `For_test` folder demonstrates the complete processing workflow using simulated data, while the Figure 1 output in `Figure_and_Real` reproduces the manuscript figure using derived trajectory data generated by applying the same workflow to the full original dataset.
 
-### 8.3 Figure 6. Route Prediction Comparison for a Representative Trajectory
+
+---
+
+### 8.3 Figure 6. Example of predicted trajectory
 
 #### Input data
 
@@ -566,7 +592,7 @@ Figure 6 compares the observed trajectory with the routes predicted by the four 
 
 ---
 
-### 8.4 Figure 7. Jaccard Similarity Comparison
+### 8.4 Figure 7. Jaccard Similarity
 
 #### Input data
 
@@ -594,20 +620,17 @@ These files contain Jaccard Similarity and Levenshtein Distance values calculate
    * `For_test/code6_predict_markov.ipynb`
    * `For_test/code6.5_predict_attribute_markov.ipynb`
    * `For_test/code8_predict_LSTM.py`
-
-3. Refine LSTM prediction results using:
-
    * `For_test/code9_refine_LSTM.ipynb`
 
-4. Calculate accuracy metrics using:
+3. Calculate accuracy metrics using:
 
    * `For_test/code10_accuracy.ipynb`
 
-5. The same evaluation workflow was applied to the full original dataset to generate the accuracy files used for Figure 7.
+4. The same evaluation workflow was applied to the full original dataset to generate the accuracy files used for Figure 7.
 
-6. Run `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`.
+5. Run `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`.
 
-7. Execute the section corresponding to Figure 7.
+6. Execute the section corresponding to Figure 7.
 
 #### Output data
 
@@ -619,7 +642,7 @@ Figure 7 reports the Jaccard Similarity results for the route prediction models.
 
 ---
 
-### 8.5 Figure 8. Levenshtein Distance Comparison
+### 8.5 Figure 8. Levenshtein Distance
 
 #### Input data
 
@@ -647,20 +670,17 @@ These files are generated by comparing observed validation routes with the route
    * `For_test/code6_predict_markov.ipynb`
    * `For_test/code6.5_predict_attribute_markov.ipynb`
    * `For_test/code8_predict_LSTM.py`
-
-3. Refine LSTM prediction results using:
-
    * `For_test/code9_refine_LSTM.ipynb`
 
-4. Calculate accuracy metrics using:
+3. Calculate accuracy metrics using:
 
    * `For_test/code10_accuracy.ipynb`
 
-5. The same evaluation workflow was applied to the full original dataset to generate the accuracy files used for Figure 8.
+4. The same evaluation workflow was applied to the full original dataset to generate the accuracy files used for Figure 8.
 
-6. Run `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`.
+5. Run `Figure_and_Real/evaluation_and_significance_fig_7_8.ipynb`.
 
-7. Execute the section corresponding to Figure 8.
+6. Execute the section corresponding to Figure 8.
 
 #### Output data
 
@@ -672,7 +692,7 @@ Figure 8 reports the Levenshtein Distance results for the route prediction model
 
 ---
 
-### 8.6 Figure 9. OD Route Segment Examples
+### 8.6 Figure 9. Heterogeneous trajectory within identical OD
 
 #### Input data
 
@@ -710,11 +730,11 @@ The `Figure_9/` folder contains representative OD segment examples prepared for 
 
 #### Description
 
-Figure 9 visualizes representative OD route segment examples. The purpose of the figure is to show how continuous trajectory sequences are converted into connected route sequences and divided into OD segments. These OD route segments are the basic prediction units used by the Shortest Path, Basic Markov, Conditional Markov, and LSTM models.
+Figure 9 visualizes representative OD route segment examples. The purpose of the figure is to show how continuous trajectory sequences are converted into connected route sequences and divided into OD segments.
 
 ---
 
-### 8.7 Figure 10. Route Prediction Examples for Selected Cases
+### 8.7 Figure 10. Overfitting behavior in the conditional Markov model
 
 #### Input data
 
@@ -756,11 +776,11 @@ The `Figure_10/` folder contains selected observed trajectories and their corres
 
 #### Description
 
-Figure 10 presents selected route prediction examples. It compares observed routes with the predicted routes generated by the Shortest Path, Basic Markov, Conditional Markov, and LSTM models. The figure is intended to illustrate qualitative differences among the prediction methods in representative trajectory cases.
+Figure 10 presents selected route prediction examples. It compares observed routes with the predicted routes generated by the Shortest Path, Basic Markov, Conditional Markov, and LSTM models.
 
 ---
 
-### 8.8 Figure 11. Route Prediction Examples for Additional Selected Cases
+### 8.8 Figure 11. Comparison of predicted trajectories for an identical OD pair
 
 #### Input data
 
