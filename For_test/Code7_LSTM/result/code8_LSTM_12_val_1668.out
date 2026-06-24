@@ -1,0 +1,80 @@
+[Graph] num_nodes=1,458 | num_edges=4,862
+[Eval] validation loaded: n=515 | feat_dim=170
+[Eval] workers=8 | threads_per_worker=2 | poll=5s
+[Eval] resume_from_epoch=0 | already_done=0
+[Eval] watching: ../expected_findings/code7_weight_for_test/weight_12/ | eval_every=50
+[Eval] submitted epoch=50 (model_epoch_50.pth) | inflight=1
+[Eval] submitted epoch=100 (model_epoch_100.pth) | inflight=2
+[Eval] submitted epoch=150 (model_epoch_150.pth) | inflight=3
+[Eval] epoch=50 | Jaccard=0.2628 | Lev=42.95 | EndReach=0.353 | n=515
+[Eval] submitted epoch=200 (model_epoch_200.pth) | inflight=3
+[Eval] epoch=100 | Jaccard=0.2635 | Lev=49.34 | EndReach=0.235 | n=515
+[Eval] submitted epoch=250 (model_epoch_250.pth) | inflight=3
+[Eval] epoch=150 | Jaccard=0.2704 | Lev=45.99 | EndReach=0.293 | n=515
+[Eval] submitted epoch=300 (model_epoch_300.pth) | inflight=3
+[Eval] epoch=200 | Jaccard=0.2792 | Lev=45.13 | EndReach=0.307 | n=515
+[Eval] submitted epoch=350 (model_epoch_350.pth) | inflight=3
+[Eval] epoch=250 | Jaccard=0.2735 | Lev=45.68 | EndReach=0.299 | n=515
+[Eval] submitted epoch=400 (model_epoch_400.pth) | inflight=3
+[Eval] epoch=300 | Jaccard=0.2826 | Lev=45.04 | EndReach=0.309 | n=515
+[Eval] submitted epoch=450 (model_epoch_450.pth) | inflight=3
+[Eval] epoch=350 | Jaccard=0.3022 | Lev=43.64 | EndReach=0.332 | n=515
+[Eval] submitted epoch=500 (model_epoch_500.pth) | inflight=3
+[Eval] epoch=400 | Jaccard=0.3124 | Lev=44.29 | EndReach=0.318 | n=515
+[Eval] submitted epoch=550 (model_epoch_550.pth) | inflight=3
+[Eval] epoch=450 | Jaccard=0.3129 | Lev=44.64 | EndReach=0.315 | n=515
+[Eval] submitted epoch=600 (model_epoch_600.pth) | inflight=3
+[Eval] epoch=500 | Jaccard=0.3239 | Lev=44.44 | EndReach=0.317 | n=515
+[Eval] submitted epoch=650 (model_epoch_650.pth) | inflight=3
+[Eval] epoch=550 | Jaccard=0.3568 | Lev=42.94 | EndReach=0.340 | n=515
+[Eval] submitted epoch=700 (model_epoch_700.pth) | inflight=3
+[Eval] epoch=600 | Jaccard=0.3745 | Lev=42.19 | EndReach=0.350 | n=515
+[Eval] submitted epoch=750 (model_epoch_750.pth) | inflight=3
+[Eval] epoch=650 | Jaccard=0.3784 | Lev=41.80 | EndReach=0.357 | n=515
+[Eval] submitted epoch=800 (model_epoch_800.pth) | inflight=3
+[Eval] epoch=700 | Jaccard=0.3890 | Lev=41.19 | EndReach=0.367 | n=515
+[Eval] submitted epoch=850 (model_epoch_850.pth) | inflight=3
+[Eval] epoch=750 | Jaccard=0.4019 | Lev=40.55 | EndReach=0.375 | n=515
+[Eval] submitted epoch=900 (model_epoch_900.pth) | inflight=3
+[Eval] epoch=800 | Jaccard=0.3998 | Lev=40.58 | EndReach=0.375 | n=515
+[Eval] submitted epoch=950 (model_epoch_950.pth) | inflight=3
+[Eval] epoch=850 | Jaccard=0.4090 | Lev=40.14 | EndReach=0.383 | n=515
+[Eval] submitted epoch=1000 (model_epoch_1000.pth) | inflight=3
+[Eval] epoch=900 | Jaccard=0.4186 | Lev=39.44 | EndReach=0.398 | n=515
+[Eval] submitted epoch=1050 (model_epoch_1050.pth) | inflight=3
+[Eval] epoch=950 | Jaccard=0.4227 | Lev=38.74 | EndReach=0.406 | n=515
+[Eval] submitted epoch=1100 (model_epoch_1100.pth) | inflight=3
+[Eval] epoch=1000 | Jaccard=0.4242 | Lev=38.80 | EndReach=0.404 | n=515
+[Eval] submitted epoch=1150 (model_epoch_1150.pth) | inflight=3
+[Eval] epoch=1050 | Jaccard=0.4254 | Lev=39.38 | EndReach=0.394 | n=515
+[Eval] submitted epoch=1200 (model_epoch_1200.pth) | inflight=3
+[Eval] epoch=1100 | Jaccard=0.4247 | Lev=38.63 | EndReach=0.406 | n=515
+[Eval] submitted epoch=1250 (model_epoch_1250.pth) | inflight=3
+[Eval] epoch=1150 | Jaccard=0.4269 | Lev=38.56 | EndReach=0.410 | n=515
+[Eval] submitted epoch=1300 (model_epoch_1300.pth) | inflight=3
+[Eval] epoch=1200 | Jaccard=0.4296 | Lev=38.02 | EndReach=0.421 | n=515
+[Eval] submitted epoch=1350 (model_epoch_1350.pth) | inflight=3
+[Eval] epoch=1250 | Jaccard=0.4328 | Lev=38.24 | EndReach=0.412 | n=515
+[Eval] submitted epoch=1400 (model_epoch_1400.pth) | inflight=3
+[Eval] epoch=1300 | Jaccard=0.4336 | Lev=38.19 | EndReach=0.414 | n=515
+[Eval] submitted epoch=1450 (model_epoch_1450.pth) | inflight=3
+[Eval] epoch=1350 | Jaccard=0.4358 | Lev=37.90 | EndReach=0.417 | n=515
+[Eval] submitted epoch=1500 (model_epoch_1500.pth) | inflight=3
+[Eval] epoch=1400 | Jaccard=0.4350 | Lev=38.44 | EndReach=0.412 | n=515
+[Eval] submitted epoch=1550 (model_epoch_1550.pth) | inflight=3
+[Eval] epoch=1450 | Jaccard=0.4294 | Lev=38.42 | EndReach=0.412 | n=515
+[Eval] submitted epoch=1600 (model_epoch_1600.pth) | inflight=3
+[Eval] epoch=1500 | Jaccard=0.4383 | Lev=38.16 | EndReach=0.417 | n=515
+[Eval] submitted epoch=1650 (model_epoch_1650.pth) | inflight=3
+[Eval] epoch=1550 | Jaccard=0.4413 | Lev=37.10 | EndReach=0.435 | n=515
+[Eval] submitted epoch=1700 (model_epoch_1700.pth) | inflight=3
+[Eval] epoch=1600 | Jaccard=0.4423 | Lev=36.99 | EndReach=0.439 | n=515
+[Eval] submitted epoch=1750 (model_epoch_1750.pth) | inflight=3
+[Eval] epoch=1650 | Jaccard=0.4340 | Lev=37.77 | EndReach=0.425 | n=515
+[Eval] submitted epoch=1800 (model_epoch_1800.pth) | inflight=3
+[Eval] epoch=1700 | Jaccard=0.4359 | Lev=37.39 | EndReach=0.431 | n=515
+[Eval] submitted epoch=1850 (model_epoch_1850.pth) | inflight=3
+[Eval] epoch=1750 | Jaccard=0.4454 | Lev=36.42 | EndReach=0.449 | n=515
+[Eval] submitted epoch=1900 (model_epoch_1900.pth) | inflight=3
+[Eval] epoch=1800 | Jaccard=0.4452 | Lev=36.72 | EndReach=0.437 | n=515
+[Eval] submitted epoch=1950 (model_epoch_1950.pth) | inflight=3

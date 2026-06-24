@@ -10,13 +10,13 @@ Input:
     - Hexagon road network graph:
       ../data/new_hexagraph/hexa_network_with_road.gpickle
     - Training route segment files:
-      ../data/sample_processed_inputs/Training/shortcut_route/route_split_12/
+      ../data/simulated_processed_inputs/Training/shortcut_route/route_split_12/
     - Traveler attribute file with OD nodes:
-      ../data/sample_processed_inputs/Training/shortcut_route/traveler_proper_OD_12.csv
+      ../data/simulated_processed_inputs/Training/shortcut_route/traveler_proper_OD_12.csv
 
 Output:
     - Model checkpoints:
-      ../expected_outputs/code7_weight_for_test/weight_12/model_epoch_{epoch}.pth
+      ../expected_findings/code7_weight_for_test/weight_12/model_epoch_{epoch}.pth
 
 Main procedures:
     1. Load the hexagon road network graph and convert it into PyTorch Geometric
@@ -78,10 +78,10 @@ np.random.seed(seed)
 # File paths
 GRAPH_PATH = "../data/new_hexagraph/hexa_network_with_road.gpickle"
 
-TRAIN_ROUTE_DIR = "../data/sample_processed_inputs/Training/shortcut_route/route_split_12/"
-TRAIN_PROP_CSV  = "../data/sample_processed_inputs/Training/shortcut_route/traveler_proper_OD_12.csv"
+TRAIN_ROUTE_DIR = "../data/simulated_processed_inputs/Training/shortcut_route/route_split_12/"
+TRAIN_PROP_CSV  = "../data/simulated_processed_inputs/Training/shortcut_route/traveler_proper_OD_12.csv"
 
-WEIGHT_DIR = "../expected_outputs/code7_weight_for_test/weight_12/"
+WEIGHT_DIR = "../expected_findings/code7_weight_for_test/weight_12/"
 os.makedirs(WEIGHT_DIR, exist_ok=True)
 
 # Training hyperparameters

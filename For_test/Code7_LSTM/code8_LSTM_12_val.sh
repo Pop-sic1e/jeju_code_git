@@ -3,7 +3,7 @@
 #SBATCH --job-name=code8_LSTM_12_val      # job name
 #SBATCH --output=./result/%x_%j.out       # result log path
 #SBATCH --error=./err/%x_%j.err           # error log path
-#SBATCH --time=00:40:00                   # maximum execution time
+#SBATCH --time=00:20:00                   # maximum execution time
 #SBATCH --cpus-per-task=16                # number of CPU
 
 

@@ -34,11 +34,65 @@ torch-sparse==0.6.18, torch-cluster==1.6.3, tqdm==4.67.1
 
 This repository is divided into two main folders: `For_test` and `Figure_and_Real`.
 
-The `For_test` folder contains the codes and sample data required to reproduce the overall workflow of the study. Because the full original dataset is too large to upload, the data included in `For_test` correspond to 1/10 of the original dataset. The purpose of this folder is to allow reviewers to execute the complete analytical procedure, including data preprocessing, route prediction, and accuracy calculation.
+The `For_test` folder contains the codes and simulated data required to demonstrate the overall workflow of the study. Because the original AI-Hub data cannot be redistributed, transferred to third parties, or exported outside Korea without prior approval, this repository does not include the original AI-Hub data or direct subsets of it. Instead, the `For_test/data/simulated_raw_data/` folder provides simulated data that follow the same folder structure, file naming convention, and column schema required by the code. For a detailed description of the original data source and download procedure, please refer to `Data Download Instructions.md`. The purpose of this folder is to allow reviewers to execute the complete analytical procedure, including data preprocessing, route prediction, and accuracy calculation, using the simulated data.
 
-The `Figure_and_Real` folder contains the codes used to reproduce the figures and statistical results reported in the manuscript. The input files used in this folder are based on the final outputs generated from the full original dataset used in the actual study. Therefore, while `For_test` demonstrates the full reproducible workflow using the reduced dataset, `Figure_and_Real` provides the final result files needed to reproduce the figures and statistics reported in the manuscript.
+The `Figure_and_Real` folder contains the codes used to reproduce the figures and statistical results reported in the manuscript. The input files used in this folder are based on the final outputs generated from the full original dataset used in the actual study. Therefore, while `For_test` demonstrates the full reproducible workflow using the simulated dataset, `Figure_and_Real` provides the final result files needed to reproduce the figures and statistics reported in the manuscript.
 
----
+The overall repository structure is as follows.
+
+```text
+jeju_code_git_anonymous/
+├── Data Download Instructions.md              # Instructions for downloading the original AI-Hub dataset and file keys
+├── README.md                                  # Overview of the repository and reproducibility package
+├── Reproduction Guide.pdf                     # Step-by-step guide for reproducing workflows, figures, tables, and metrics
+│
+├── For_test/                                  # Executable workflow using simulated data
+│ ├── Code7_LSTM/                              # Supporting scripts and files for LSTM model training
+│ ├── LSTM_weight/                             # Pretrained LSTM weights used in the For_test workflow
+│ ├── data/                                    # Input and intermediate data for the For_test workflow
+│ │ ├── jeju_shp/                              # Jeju boundary shapefile
+│ │ ├── new_hexagraph/                         # Hexagon grid and hexagon-based road network files
+│ │ ├── road_network/                          # Jeju road network graph files
+│ │ ├── simulated_processed_inputs/            # Intermediate input files generated from simulated raw data
+│ │ └── simulated_raw_data/Jeju_data/          # Simulated raw-style data following the AI-Hub folder and column structure
+│ ├── expected_findings/                       # Expected outputs generated from the simulated-data workflow
+│ │ ├── code5_shortcut_prediction_route/       # Expected shortest-path prediction outputs
+│ │ ├── code6_prediction_markov/               # Expected Basic Markov prediction outputs
+│ │ ├── code6.5_prediction_markov_2/           # Expected Conditional Markov prediction outputs
+│ │ ├── code7_weight_for_test/                 # Expected example LSTM training outputs
+│ │ ├── code8_bash_result/                     # Expected SLURM/bash execution logs for LSTM prediction
+│ │ ├── code8_prediction_LSTM/                 # Expected raw LSTM prediction outputs
+│ │ ├── code9_refine_LSTM/                     # Expected topology-refined LSTM prediction outputs
+│ │ └── code10_accuracy/                       # Expected accuracy files and evaluation results
+│ ├── code1_hexa_network.ipynb                 # Construct and visualize the hexagon road network
+│ ├── code2_change_gps_to_hexa.ipynb           # Filter GPS points in Jeju and convert trajectories to hexagon sequences
+│ ├── code3_create_traveler_feature.ipynb      # Generate traveler-level feature tables
+│ ├── code4_create_od_route_segments.ipynb     # Generate connected routes and split them into OD route segments
+│ ├── code5_predict_shortest.ipynb             # Predict OD routes using the shortest path baseline
+│ ├── code6_predict_markov.ipynb               # Predict OD routes using the Basic Markov model
+│ ├── code6.5_predict_attribute_markov.ipynb   # Predict OD routes using the Conditional Markov model
+│ ├── code7_train_LSTM_example.ipynb           # Demonstrate LSTM model training using simulated data
+│ ├── code8_predict_LSTM.py                    # Generate LSTM route predictions using pretrained weights
+│ ├── code8_predict_LSTM.sh                    # SLURM/bash script for running LSTM prediction
+│ ├── code9_refine_LSTM.ipynb                  # Refine LSTM predictions using graph topology
+│ └── code10_accuracy.ipynb                    # Calculate Jaccard Similarity and Levenshtein Distance
+│
+└── Figure_and_Real/                           # Reproduction of manuscript figures and statistical results
+    ├── data/                                  # Input data for reproducing manuscript figures and statistics
+    │ ├── GPS_trajectory_for_figure/           # Trajectory datasets used for route visualization figures
+    │ │ ├── Figure_1/                          # Input data for Figure 1
+    │ │ ├── Figure_6/                          # Input data for Figure 6
+    │ │ ├── Figure_9/                          # Input data for Figure 9
+    │ │ ├── Figure_10/                         # Input data for Figure 10
+    │ │ └── Figure_11/                         # Input data for Figure 11
+    │ ├── accuracy/                            # Accuracy result files generated from the full-data workflow
+    │ ├── jeju_shp/                            # Jeju boundary shapefile used for visualization
+    │ ├── new_hexagraph/                       # Hexagon road network files used for visualization
+    │ └── trajectory/                          # Full-data trajectory and prediction files used for evaluation
+    ├── Figure/                                # Reproduced manuscript figures
+    ├── drawing_fig_1_6_9_10_11.ipynb          # Generate Figures 1, 6, 9, 10, and 11
+    └── evaluation_and_significance_fig_7_8.ipynb # Generate Figures 7 and 8 and perform statistical tests
+```
 
 ## 3. Data Index
 

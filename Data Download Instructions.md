@@ -4,7 +4,9 @@ The datasets used in this study were obtained from **Domestic Travel Log Data (J
 All data information can be accessed through **AI-Hub ([www.aihub.or.kr](http://www.aihub.or.kr))**.
 
 Please note that exporting the original data outside Korea requires prior consent from the **National Information Society Agency (NIA)**.
-For this reason, and because of the large data size, this GitHub repository only includes a **1/10 sample dataset** for reproducibility testing.
+Therefore, this repository does not include the original AI-Hub data or direct subsets of the original data.
+
+Instead, the For_test/data/simulated_raw_data/ folder provides simulated data that follow the same folder structure, file naming convention, and column schema required by the code. These simulated data are provided only to demonstrate the complete executable workflow from raw-style input files to preprocessing, route prediction, evaluation, and figure/table generation. The simulated data are not used to reproduce the numerical results reported in the manuscript.
 
 Researchers who have access to AI-Hub and obtain an API key from **AI-Hub ([www.aihub.or.kr](http://www.aihub.or.kr))** can download the original data used in this study using the following commands.
 
