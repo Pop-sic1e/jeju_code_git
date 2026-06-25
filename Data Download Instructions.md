@@ -28,7 +28,9 @@ Researchers who have access to AI-Hub and obtain an API key from **AI-Hub ([www.
 curl -o "aihubshell" https://api.aihub.or.kr/api/aihubshell.do
 chmod +x aihubshell
 
-# 2. find dataset key
+# 2. find dataset key 
+# The AI-Hub dataset title is registered in Korean, so the search keyword must be entered in Korean. 
+# "국내 여행로그 데이터" means "Domestic Travel Log Data" in English. 
 ./aihubshell -mode l | grep "국내 여행로그 데이터"
 
 # 3. find file key

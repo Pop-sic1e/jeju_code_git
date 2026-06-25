@@ -79,11 +79,13 @@ jeju_code_git_anonymous/
 └── Figure_and_Real/                           # Reproduction of manuscript figures and statistical results
     ├── data/                                  # Input data for reproducing manuscript figures and statistics
     │ ├── GPS_trajectory_for_figure/           # Trajectory datasets used for route visualization figures
-    │ │ ├── Figure_1/                          # Input data for Figure 1
-    │ │ ├── Figure_6/                          # Input data for Figure 6
-    │ │ ├── Figure_9/                          # Input data for Figure 9
-    │ │ ├── Figure_10/                         # Input data for Figure 10
-    │ │ └── Figure_11/                         # Input data for Figure 11
+    │ │ ├── Figure_1/                          # Input data for Figure 1 (Figure 1. Jeju Island and Tourist Trajectory)
+    │ │ ├── Figure_6/                          # Input data for Figure 6 (Figure 6. Example of predicted trajectory)
+    │ │ ├── Figure_7/                          # Input data for Figure 7 (Figure 7. Jaccard Similarity)
+    │ │ ├── Figure_8/                          # Input data for Figure 8 (Figure 8. Levenshtein Distance)
+    │ │ ├── Figure_9/                          # Input data for Figure 9 (Figure 9. Heterogeneous trajectory within identical OD)
+    │ │ ├── Figure_10/                         # Input data for Figure 10 (Figure 10. Overfitting behavior in the conditional Markov model)
+    │ │ └── Figure_11/                         # Input data for Figure 11 (Figure 11. Comparison of predicted trajectories for an identical OD pair)
     │ ├── accuracy/                            # Accuracy result files generated from the full-data workflow
     │ ├── jeju_shp/                            # Jeju boundary shapefile used for visualization
     │ ├── new_hexagraph/                       # Hexagon road network files used for visualization
